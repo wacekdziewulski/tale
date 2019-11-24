@@ -4,23 +4,22 @@ layout: default
 
 <div class="post">
   <div class="post-info">
-    <span>Written by</span>
-    {% if page.author %}
-        {{ page.author }}
-    {% else %}
-        {{ site.author.name }}
+    {% if page.date %}
+      <span>Napisany:&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%d.%m.%Y" }}</time>
     {% endif %}
 
-    {% if page.date %}
-      <br>
-      <span>on&nbsp;</span><time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    {% if page.author %}
+        <br/><span>przez {{ page.author }}</span>
+    {% else %}
+        <br/><span>przez {{ site.author.name }}</span>
     {% endif %}
   </div>
 
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-line"></div>
-
-  {{ content }}
+  <div class="post-text">  
+    {{ content }}
+  </div>
 </div>
 
 {% if page.comments %}
@@ -35,5 +34,5 @@ layout: default
     <a href="{{ page.previous.url | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
   {% endif %}
 
-  <a href="#" class="top">Top</a>
+  <a href="#" class="top">Do góry</a>
 </div>
